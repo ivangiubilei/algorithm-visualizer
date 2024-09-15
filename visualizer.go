@@ -80,16 +80,18 @@ func BubbleSort(arr *[]int, ms int, status bool) {
 	swaps := 0
 	algName := "BubbleSort"
 	printArray(*arr, 0, 0, false, algName)
-	for i := range *arr {
+	for i := 0; i < len(*arr)-1; i++ {
 		time.Sleep(time.Duration(ms) * time.Millisecond)
-		for j := range *arr {
+		for j := 0; j < len(*arr)-i-1; j++ {
 			comparisons++
 			time.Sleep(time.Duration(ms) * time.Millisecond)
-			if (*arr)[i] > (*arr)[j] {
+			if (*arr)[j] > (*arr)[j+1] {
 				swaps++
-				move(arr, i, j)
+				(*arr)[j], (*arr)[j+1] = (*arr)[j+1], (*arr)[j]
 			}
+
 			printArrayCurrent(*arr, i, j, comparisons, swaps, status, algName)
+
 		}
 	}
 	printArray(*arr, comparisons, swaps, status, algName)
